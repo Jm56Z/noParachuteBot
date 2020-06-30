@@ -1,0 +1,12 @@
+#include <aegis.hpp>
+
+int main(void)
+{
+	aegis::core bot(aegis::create_bot_t().log_level(spdlog::level::trace).token("Njk3NDI5NzEwMjMzNDAzNDQy.Xo3KIg.xAVfA82fn86UN6L3x80ze3l2XZA"));
+	bot.set_on_message_create([](auto obj) {
+					  if (obj.msg.get_content() == "Hi")
+						  obj.msg.get_channel().create_message(fmt::format("Hello {}", obj.msg.author.username));
+				  });
+	bot.run();
+	bot.yield();
+}
